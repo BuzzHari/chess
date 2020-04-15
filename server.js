@@ -36,6 +36,10 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, ()=> console.log(`Server up and running on port ${PORT}!`));
 
 /*
+ *
+ *  Do npm install
+ *  Do npm run client-install
  *  To run in dev mode : npm run dev
+ *  
  *
  */
