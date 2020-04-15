@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Chessboard from "chessboardjsx";
+import StockFish from "./integrations/Stockfish"
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -24,6 +26,20 @@ class Dashboard extends Component {
                 gets ready.
               </p>
             </h4>
+            <div style={boardsContainer}>
+              <StockFish>
+                {({ position, onDrop }) => (
+                  <Chessboard 
+                    id="stockfish"
+                    position={position}
+                    width={320}
+                    onDrop={onDrop}
+                    boardStyle={boardStyle}
+                    orientation="white"
+                  />
+                )}
+              </StockFish>
+            </div>
             <button
               style={{
                 width: "150px",
@@ -56,3 +72,14 @@ export default connect(
   mapStateToProps,
   { logoutUser }
 )(Dashboard);
+
+const boardsContainer = {
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center"
+};
+
+const boardStyle = {
+  borderRadius: "5px",
+  boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
+};
