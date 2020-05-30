@@ -36,7 +36,7 @@ const validateRegisterInput = (data) => {
     }
 
     if (!Validator.isLength(data.password, {min:6, max:30})) {
-        errors.password = "Password must at least 6 character";
+        errors.password += "Password must at least 6 character";
     }
     
     if ( !Validator.equals(data.password, data.password2)) {

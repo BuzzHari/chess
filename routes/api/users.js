@@ -76,28 +76,34 @@ router.post("/login", (req, res) =>  {
         
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
-                // User matched.
-                // Created JWT Payload.
-                const payload = {
-                    id: user.id,
-                    name: user.name
-                };
+               // User matched.
+               // Created JWT Payload.
+                // const payload = {
+                //     id: user.id,
+                //     name: user.name
+                // };
 
-                // Sign token
+                // //Sign token
                 
-                jwt.sign(
-                    payload,
-                    secretOrKey,
-                    {
-                        expiresIn: 31556926 // 1 years in seconds
-                    }, 
-                    (err, token) => {
-                        res.json({
-                            success: true,
-                            token: "Bearer " + token
-                        });
-                    }
-                );
+                // jwt.sign(
+                //     payload,
+                //     secretOrKey,
+                //     {
+                //         expiresIn: 31556926 // 1 years in seconds
+                //     }, 
+                //     (err, token) => {
+                //         res.json({
+                //             success: true,
+                //             token: "Bearer " + token
+                //         });
+                //     }
+                // );
+                const token = user.generateAuthToken();
+                //token = "Bearer" + token;
+                return res.json({
+                    success: true,
+                    token: `Bearer ${token}`
+                });
             } else {
                 return res.status(400).json({ passwordincorrect: "Password incorrect" });
             }

@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const connectDB = require("./config/db");
+const {connectDB, disconnectDB} = require("./config/db");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
